@@ -5,7 +5,7 @@ import MainContainer from "./components/MainContainer";
 
 function App() {
   return (
-    <div className="flex">
+    <div className="flex font-serif">
       <Sidebar />
       <MainContainer />
     </div>
