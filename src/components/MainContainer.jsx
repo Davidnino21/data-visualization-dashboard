@@ -1,4 +1,5 @@
 import LineGraph from "./LineGraph";
+import BarGraph from "./BarGraph";
 
 
 function MainContainer() {
@@ -19,6 +20,10 @@ function MainContainer() {
       <div className="h-96 flex items-center flex-col">
         <h2 className="text-center">Line Chart</h2>
         <LineGraph />
+      </div>
+      <div className="h-96 flex items-center flex-col">
+        <h2 className="text-center">Line Chart</h2>
+        <BarGraph />
       </div>
     </div>
   );
