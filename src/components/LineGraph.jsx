@@ -10,74 +10,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
-
 export default class LineGraph extends PureComponent {
-  static demoUrl =
-    "https://codesandbox.io/p/sandbox/line-chart-width-xaxis-padding-8v7952";
-
-componentDidMount(){
-  const options = {method: 'GET', headers: {accept: 'application/json'}};
-
-fetch('https://api.sportradar.com/mlb/trial/v8/en/seasons/2024/REG/teams/25507be1-6a68-4267-bd82-e097d94b359b/statistics.json?api_key=f9ASvBbG0OKyx8mPyaKSDQ3QHCMrNeHEAcX3BC1N', options)
-  .then(res => res.json())
-  .then(res => console.log(res))
-  .catch(err => console.error(err));
-}
-
   render() {
-
-
     return (
-      <ResponsiveContainer width="75%" height="100%">
+      <ResponsiveContainer width="100%" height="100%">
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={this.props.weatherData}
           margin={{
             top: 5,
             right: 30,
@@ -86,17 +26,13 @@ fetch('https://api.sportradar.com/mlb/trial/v8/en/seasons/2024/REG/teams/25507be
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="datetime" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line
-            type="monotone"
-            dataKey="pv"
-            stroke="#8884d8"
-            activeDot={{ r: 8 }}
-          />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="temp" stroke="#8884d8" />
+          <Line type="monotone" dataKey="tempmax" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="tempmin" stroke="#ff7300" />
         </LineChart>
       </ResponsiveContainer>
     );
