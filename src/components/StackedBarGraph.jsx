@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import {
   BarChart,
   Bar,
-  Rectangle,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -11,9 +10,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import sampleData from "../data/sampleData.json";
-console.log(sampleData);
 
-export default class BarGraph extends PureComponent {
+export default class Example extends PureComponent {
   render() {
     return (
         <BarChart
@@ -21,7 +19,7 @@ export default class BarGraph extends PureComponent {
           height={300}
           data={sampleData}
           margin={{
-            top: 5,
+            top: 20,
             right: 30,
             left: 20,
             bottom: 5,
@@ -29,21 +27,11 @@ export default class BarGraph extends PureComponent {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="symbol" />
-          <YAxis />
+          <YAxis/>
           <Tooltip />
           <Legend />
-          <Bar
-            dataKey="regularMarketPrice"
-            fill="#8884d8"
-          />
-          <Bar
-            dataKey="regularMarketDayHigh"
-            fill="#82ca9d"
-          />
-          <Bar
-            dataKey="regularMarketDayLow"
-            fill="#fff7300"
-          />
+          <Bar dataKey="regularMarketOpen" stackId="a" fill="#fff7300" />
+          <Bar dataKey="regularMarketPreviousClose" stackId="a" fill="#82ca9d" />
         </BarChart>
     );
   }

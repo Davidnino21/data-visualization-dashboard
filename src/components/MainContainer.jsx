@@ -1,8 +1,22 @@
-import LineGraph from "./LineGraph";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import StackedBarGraph from "./StackedBarGraph";
 import BarGraph from "./BarGraph";
 
-
 function MainContainer() {
+  const navigate = useNavigate(); // Hook for navigation
+  const [show, setShow] = useState("current");
+
+  function handleChange(e) {
+    const value = e.target.value;
+    setShow(value);
+
+    // Navigate to the historical page if "Historical" is selected
+    if (value === "historical") {
+      navigate("/historical");
+    }
+  }
+
   return (
     <div className="bg-white flex-grow">
       <h1 className="bg-slate-300 text-center font-bold p-10 text-4xl">
@@ -10,21 +24,21 @@ function MainContainer() {
       </h1>
       <div className="p-6">
         <label className="p-3 font-bold">Filter by Category:</label>
-        <select className="border-1" name="" id="">
-          <option value="">All</option>
-          <option value="">Technology</option>
-          <option value="">Finance</option>
-          <option value="">Healthcare</option>
+        <select className="border-1" onChange={handleChange}>
+          <option value="current">Current</option>
+          <option value="historical">Historical</option>
         </select>
       </div>
-      <div className="h-96 flex items-center flex-col">
-        <h2 className="text-center">Line Chart</h2>
-        <LineGraph />
-      </div>
-      <div className="h-96 flex items-center flex-col">
-        <h2 className="text-center">Line Chart</h2>
-        <BarGraph />
-      </div>
+      {show === "current" && (
+        <>
+          <div className="h-96 flex items-center flex-col">
+            <StackedBarGraph />
+          </div>
+          <div className="h-96 flex items-center flex-col">
+            <BarGraph />
+          </div>
+        </>
+      )}
     </div>
   );
 }

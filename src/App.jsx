@@ -1,15 +1,16 @@
-import { useState } from "react";
 import "./App.css";
-import Sidebar from "./components/Sidebar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
+import HistoricalPage from "./components/HistoricalPage";
 
 function App() {
   return (
-    <div className="flex font-serif">
-      <Sidebar />
-      <MainContainer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainContainer />} />
+        <Route path="/historical" element={<HistoricalPage />} />
+      </Routes>
+    </Router>
   );
 }
-
 export default App;
