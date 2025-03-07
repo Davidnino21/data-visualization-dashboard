@@ -1,16 +1,15 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
-import HistoricalPage from "./components/HistoricalPage";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainContainer />} />
-        <Route path="/historical" element={<HistoricalPage />} />
-      </Routes>
-    </Router>
+    <div>
+      <MainContainer />
+      <div>
+        <Footer />
+      </div>
+    </div>
   );
 }
 export default App;

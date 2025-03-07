@@ -1,20 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import StackedBarGraph from "./StackedBarGraph";
 import BarGraph from "./BarGraph";
+import HistoricalHighGraph from "./HistoricalHighGraph";
+import HistoricalLowGraph from "./HistoricalLowGraph";
 
 function MainContainer() {
-  const navigate = useNavigate(); // Hook for navigation
   const [show, setShow] = useState("current");
 
   function handleChange(e) {
     const value = e.target.value;
-    setShow(value);
-
-    // Navigate to the historical page if "Historical" is selected
-    if (value === "historical") {
-      navigate("/historical");
-    }
+    setShow(value);   
   }
 
   return (
@@ -36,6 +31,16 @@ function MainContainer() {
           </div>
           <div className="h-96 flex items-center flex-col">
             <BarGraph />
+          </div>
+        </>
+      )}
+      {show === "historical" && (
+        <>
+          <div className="h-96 flex items-center flex-col">
+            <HistoricalHighGraph />
+          </div>
+          <div className="h-96 flex items-center flex-col">
+            <HistoricalLowGraph />
           </div>
         </>
       )}
